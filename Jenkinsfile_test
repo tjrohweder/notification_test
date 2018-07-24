@@ -17,11 +17,19 @@ pipeline {
                 echo 'Deploying....'
             }
         }
+        stage ('success'){
+            steps {
+                script {
+                    currentBuild.result = 'SUCCESS'
+                }
+            }
+        }
     }
+
     post {
         failure {
             script {
-                currentBuild.result = 'SUCCESS'
+                currentBuild.result = 'FAILURE'
             }
         }
 
@@ -30,7 +38,6 @@ pipeline {
                 notifyEveryUnstableBuild: true,
                 recipients: "tjrohweder@gmail.com",
                 sendToIndividuals: true])
-            }
         }
     }
 }
