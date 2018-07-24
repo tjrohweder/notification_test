@@ -17,7 +17,7 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-    
+   } 
     post {
         failure {
             script {
